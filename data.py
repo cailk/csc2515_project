@@ -74,6 +74,14 @@ def get_bloodmnist_loader(split='train', img_size=128, batch_size=64, shuffle=Tr
         val_loader = DataLoader(
             val_dataset, batch_size=batch_size, num_workers=4, pin_memory=True, shuffle=shuffle)
         return val_loader
+    
+    elif split == 'test':
+        test_dataset = BloodMNIST(
+            split=split, download=True, transform=val_transform, size=img_size
+        )
+        test_loader = DataLoader(
+            test_dataset, batch_size=batch_size, num_workers=4, pin_memory=True, shuffle=shuffle)
+        return test_loader
 
     
 def get_simsiam_loader(img_size=128, batch_size=64, shuffle=True):
